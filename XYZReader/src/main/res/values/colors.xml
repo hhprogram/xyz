@@ -14,12 +14,15 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!--editing the color values to make for a 'happier' color scheme. Also had to add some
+color variables like primary light and dark color values-->
 
 <resources>
     <color name="photo_placeholder">#ccc</color>
 
-    <color name="theme_primary">#04561A</color>
-    <color name="theme_primary_dark">#04561A</color>
+    <color name="theme_primary">#448aff</color>
+    <color name="theme_primary_dark">#005ecb</color>
+    <color name="theme_primary_light">#83b9ff</color>
     <color name="theme_accent">#04561A</color>
     <color name="ltgray">#ffe0e0e0</color>
 </resources>

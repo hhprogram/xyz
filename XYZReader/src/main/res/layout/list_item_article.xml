@@ -22,6 +22,8 @@
             android:layout_height="100dp"
             android:background="@color/photo_placeholder" />
 
+        <!--below is the textview for the article title. Here we change the attr textColor to not
+        be light gray or basically anything too close to the background-->
         <TextView
             android:id="@+id/article_title"
             style="@style/TextAppearance.AppCompat.Subhead"
@@ -31,7 +33,7 @@
             android:paddingTop="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="4dp"
-            android:textColor="@color/ltgray"
+            android:textColor="@color/theme_primary_dark"
             android:ellipsize="end"
             android:maxLines="4" />
 
@@ -43,7 +45,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
-            android:textColor="#6000"
+            android:textColor="@color/theme_accent"
             android:maxLines="2"
             android:ellipsize="end" />
     </LinearLayout>
