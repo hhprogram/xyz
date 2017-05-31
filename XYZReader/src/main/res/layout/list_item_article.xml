@@ -36,7 +36,7 @@
             android:textColor="@color/theme_primary_dark"
             android:ellipsize="end"
             android:maxLines="4" />
-
+<!--this text view is the 'subtitle' which is the date and photographer -->
         <TextView
             android:id="@+id/article_subtitle"
             style="@style/TextAppearance.AppCompat.Body1"
@@ -45,7 +45,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
-            android:textColor="@color/theme_accent"
+            android:textColor="@color/gray"
             android:maxLines="2"
             android:ellipsize="end" />
     </LinearLayout>

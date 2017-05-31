@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,13 +28,15 @@
         android:background="@color/theme_primary"
         android:elevation="8dp">
 
+        <!--changed the layout_height from ?actionBarSize to match_parent. looks better as the
+        text in the app bar goes to the middle-->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_marginLeft="@dimen/list_toolbar_side_margin"
             android:layout_marginRight="@dimen/list_toolbar_side_margin"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="match_parent"
             android:background="@color/theme_primary"
             android:layout_gravity="bottom">
 

@@ -29,6 +29,8 @@ dependencies {
     compile "com.android.support:palette-v7:$androidSupportVersion"
     compile "com.android.support:recyclerview-v7:$androidSupportVersion"
     compile "com.android.support:cardview-v7:$androidSupportVersion"
+//    added the below to allow for the use of coordinator layouts
+    compile 'com.android.support:design:25.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
     compile files('libs/volley.jar')
 }
