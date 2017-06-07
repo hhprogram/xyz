@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -55,6 +57,8 @@ public class ArticleDetailFragment extends Fragment implements
     private NestedScrollView mScrollView;
     private CoordinatorLayout mDrawInsetsFrameLayout;
     private ColorDrawable mStatusBarColorDrawable;
+
+    private Toolbar toolbar;
 
     private int mTopInset;
     private View mPhotoContainerView;
@@ -128,7 +132,7 @@ public class ArticleDetailFragment extends Fragment implements
 //        But since R.id.toolbar is only defined in the fragment layout we need to search in the
 //        fragment layout thus call the find view method on the root view of the fragment where the
 //        toolbar lives
-        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
+        toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -237,7 +241,53 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
+//        the below is declaring the collapsing toolbar and appbarlayout. Do it in bindviews()
+//        because this gets called after the cursor is loaded as this gets called in
+//        onLoadFinished() method and thus the cursor will have data and I can dyanmically
+//        populate the collapsed toolbar title with the associated item the cursor gets so that
+//        the title in the toolbar matches the data in the rest of the page
+//        need to declase collapse_toolbar final as this variable is accessed from an inner class
+//        and won't compile unless declased final. This is done as part of the safety check java
+//        does as nothing wrong with compile but during runtime variable collapse_toolbar could
+//        be reassigned before we call it again within the OnOffsetChangedListener class
+        final CollapsingToolbarLayout collapse_toolbar = (CollapsingToolbarLayout)
+                mRootView.findViewById(R.id.collapsingToolbar);
+        AppBarLayout appBarLayout = (AppBarLayout) mRootView.findViewById(R.id.appBar);
+//        then need to add an addOnOffsetChangedListener to the AppBarLayout that has a method
+//        onOffsetChanged() method that is overridden and classed whenenver the offset has been
+//        changed (ie the appbar size has changed - been collapsed, uncollapsed or made smaller
+//        but not totally collapsed). I use this to set a title for the Collapsing toolbar ONLY
+//        when it is collapsed.
+//        isShow is boolean that indicates whether or not the toolbar is fully collapsed and if the
+//        TITLE is being displayed
+//        scrollrange is the total scroll range of the appbar. Thus, if it is -1 then it just means
+//        this hasn't been set yet and we set it to this current appbar's total scroll range (which
+//        could be different if we set appbar layout heights to be dynamic depending on image size
+//        for example). Then scrollRange + verticalOffset is amount of appbar still remaining to be
+//        scrolled before 'collapsing'. Thus if it is 0 then the appbar is collapsed and thus no
+//        more to scroll - therefore the title should be set
+//        Then - if isShow boolean is true but scrollRange + verticalOffset isn't 0 (the else if
+//        statement) then that means we have uncollapsed the toolbar and thus should take away
+//        the title text and reset that isShow boolean to false
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
 
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapse_toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+                    isShow = true;
+                } else if (isShow) {
+                    collapse_toolbar.setTitle(" ");
+                    isShow = false;
+                }
+
+            }
+        });
 
         bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 

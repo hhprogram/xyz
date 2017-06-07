@@ -120,7 +120,6 @@ public class ArticleDetailActivity extends AppCompatActivity
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         mCursor = cursor;
         mPagerAdapter.notifyDataSetChanged();
-
         // Select the start ID
         if (mStartId > 0) {
             mCursor.moveToFirst();
