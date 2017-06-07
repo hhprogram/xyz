@@ -8,8 +8,7 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <!--make sure the collapsingToolbarLayout height is larger than the inner Toolbar
         height to make it actually collapse. this is because the collapsing toolbar layout height
