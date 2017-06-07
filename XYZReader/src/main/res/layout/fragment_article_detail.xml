@@ -11,6 +11,14 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
 
+        <!--make sure the collapsingToolbarLayout height is larger than the inner Toolbar
+        height to make it actually collapse. this is because the collapsing toolbar layout height
+        is the start of the toolbar height but the actual inner toolbar is the toolbar once it has
+        been collapsed (and is just a regular toolbar) thus this height should be smaller than
+        the collapsingToolbarlayout height in order to actually show any collapsing animation.
+        For the inner toolbar we use a standard 'toolbar height' by referring to
+        ?attr/actionBarSize-->
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
@@ -46,7 +54,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="?attr/homeAsUpIndicator"
                 app:layout_collapseMode="pin" />
 
