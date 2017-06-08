@@ -34,6 +34,8 @@
             <!--adding app:scaleType="centerCrop" makes the image in the collapsing app bar
             very nice looking. Fills out the whole app bar area and is scaled properly
             (might crop some of the photo if scale doesn't match the appbar area-->
+            <!--if I want the whole image to appear for sure every time then I can do
+            fitCenter but then there can be white space sometimes due to aspect ratios-->
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
