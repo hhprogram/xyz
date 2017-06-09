@@ -269,12 +269,20 @@ public class ArticleDetailFragment extends Fragment implements
 //        Then - if isShow boolean is true but scrollRange + verticalOffset isn't 0 (the else if
 //        statement) then that means we have uncollapsed the toolbar and thus should take away
 //        the title text and reset that isShow boolean to false
+//        note: verticalOffset is 0 when the appBarLayout isn't scrolled at all. Then gets more
+//        negative as the appbarLayout is scrolled away ie the toolbar collapses. Thus that is
+//        why when scrollRange + verticalOffset = 0 then the toolbar is collapsed.
+//        ScrollRange is fixed for each fragment layout (in this application it is fixed across
+//        all fragment layouts because I sset the AppBarLayout height to be a fixed dp amount
+//        but in theory within each fragment it could be fixed but it could differ across fragments
+//        as I could vary the height to match the image height etc..
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.d(TAG, "onOffsetChanged: " + verticalOffset);
                 if (scrollRange == -1) {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }

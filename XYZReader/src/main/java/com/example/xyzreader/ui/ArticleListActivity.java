@@ -50,6 +50,8 @@ public class ArticleListActivity extends AppCompatActivity implements
     // Most time functions can only handle 1902 - 2037
     private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
 
+    Adapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         if (savedInstanceState == null) {
             refresh();
         }
+
+        Log.d(TAG, "onCreate for ArticleListActivity called");
     }
 
     private void refresh() {
@@ -110,7 +114,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        Adapter adapter = new Adapter(cursor);
+        adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
         int columnCount = getResources().getInteger(R.integer.list_column_count);
@@ -127,8 +131,21 @@ public class ArticleListActivity extends AppCompatActivity implements
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private Cursor mCursor;
 
+        public Adapter() {
+
+        }
+
         public Adapter(Cursor cursor) {
             mCursor = cursor;
+        }
+
+//        make another method to basically update / set the data for the adapter. Do this so that
+//        we can move all one time code from onLoadFinished into onCreate and then once the Cursor
+//        data is loaded (ie onLoadFinished is called) we can just call this method to update
+//        the adapter with the relevant cursor data
+        public void updateAdapter(Cursor cursor) {
+            mCursor = cursor;
+            notifyDataSetChanged();
         }
 
         @Override
