@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
@@ -38,4 +38,4 @@ how we refer to the theme of the below added toolbar -->
 
 
     </FrameLayout>
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>
