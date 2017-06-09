@@ -129,9 +129,11 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <ImageButton android:id="@+id/share_fab"
+    <!--changed this to a FAB. Don't need to do much other than change this tag to fab. Then
+    just to avoid warning messages took out the background setting element as cannot set custom
+    backgrounds in fabs-->
+    <android.support.design.widget.FloatingActionButton android:id="@+id/share_fab"
         android:stateListAnimator="@anim/fab_state_list_anim"
-        android:background="@drawable/add_fab_background"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"

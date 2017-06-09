@@ -16,10 +16,12 @@
         android:orientation="vertical">
 
         <!--suppress AndroidLintContentDescription -->
+        <!--changed the layout_width to be match_parent in order to fill the width from end
+        to end-->
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:background="@color/photo_placeholder" />
 
         <!--below is the textview for the article title. Here we change the attr textColor to not
