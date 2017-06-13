@@ -25,8 +25,7 @@
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="112dp"
-        android:background="@color/theme_primary"
-        android:elevation="8dp">
+        android:elevation="4dp">
 
         <!--changed the layout_height from ?actionBarSize to match_parent. looks better as the
         text in the app bar goes to the middle-->
@@ -37,7 +36,6 @@
             android:layout_marginRight="@dimen/list_toolbar_side_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/theme_primary"
             android:layout_gravity="bottom">
 
             <ImageView
